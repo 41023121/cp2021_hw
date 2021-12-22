@@ -2,7 +2,7 @@
         <head>
         <title>cp2021 homework site</title>
         <meta charset="utf-8">
-<meta property="head" content="H2">
+<meta property="head" content="H1">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -139,125 +139,145 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">Exam << <a href='Exam.html'>Previous</a> <a href='HW1.html'>Next</a> >> HW1<br /><h1>w13</h1>
-<script src="./../cmsimde/static/brython.js"></script>
-<script src="./../cmsimde/static/brython_stdlib.js"></script>
-<!-- for ggame -->
-<p>
-<script src="./../cmsimde/static/jquery-3.3.1.min.js"></script>
-<script src="./../cmsimde/static/jquery-ui.1.12.1.min.js"></script>
-<script src="./../cmsimde/static/pixi-3.0.5.min.js"></script>
-<script src="./../cmsimde/static/buzz-1.2.1.js"></script>
-<script src="./../cmsimde/static/bs.js"></script>
-<script src="./../downloads/brython_modules.js"></script>
-</p>
-<!-- Cango 程式庫 -->
-<p>
-<script src="./../cmsimde/static/Cango-24v03-min.js"></script>
-<script src="./../cmsimde/static/CangoAxes-6v01-min.js"></script>
-<script src="./../cmsimde/static/gearUtils-09.js"></script>
-<script src="./../cmsimde/static/SVGpathUtils-6v03-min.js"></script>
-</p>
-<!-- for Konva 程式庫 -->
-<p>
-<script src="./../cmsimde/static/konva.min.js"></script>
-<script>
-window.onload=function(){
-brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
-}
-</script>
-</p>
-<p><!-- 導入 FileSaver 與 filereader --></p>
-<p>
-<script src="./../cmsimde/static/ace/FileSaver.min.js" type="text/javascript"></script>
-<script src="./../cmsimde/static/ace/filereader.js" type="text/javascript"></script>
-</p>
-<p><!-- 導入 ace --></p>
-<p>
-<script src="./../cmsimde/static/ace/ace.js" type="text/javascript"></script>
-<script src="./../cmsimde/static/ace/ext-language_tools.js" type="text/javascript"></script>
-<script src="./../cmsimde/static/ace/mode-python3.js" type="text/javascript"></script>
-<script src="./../cmsimde/static/ace/snippets/python.js" type="text/javascript"></script>
-</p>
-<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["py_src"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
-<p>
-<script type="text/javascript">
-function doSave(storage_id, filename){
-    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
-    filename = document.getElementById(filename).value
-    saveAs(blob, filename+".py");
-}
-</script>
-</p>
-<p><!-- 印出版次與關鍵字程式 --></p>
-<p>
-<script type="text/python3">
-from browser import document as doc
-from browser import html
-import ace
-# 清除畫布
-def clear_bd(ev):
-    bd = doc["brython_div"]
-    bd.clear()
-# Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
-Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
-Ace.editor.setValue("""# 導入 sys 模組
-import sys
-# 導入 keyword 模組
-import keyword
-def helloWorld():
-    print("Hello World!")
-helloWorld()
-# 利用 sys 模組中的 version_info 印出 Python 版次
-print("Python version: ", sys.version_info)
-# 利用 keyword 模組中的 kwlist 印出關鍵字
-print("Python keywords: ", keyword.kwlist)
-""")
-Ace.editor.scrollToRow(0)
-Ace.editor.gotoLine(0)
-# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
-doc['kw_run'].bind('click', Ace.run)
-doc['kw_show_console'].bind('click', Ace.show_console)
-doc['kw_clear_console'].bind('click', Ace.clear_console)
-doc['clear_bd'].bind('click', clear_bd)
-</script>
-</p>
-<p><!-- 用來顯示程式碼的 editor 區域 --></p>
-<div id="kw_editor" style="width: 600px; height: 300px;"></div>
-<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
-<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src', 'kw_filename');" type="submit" value="Save"/></form>
-<p><button id="kw_run">Run</button> <button id="kw_show_console">Output</button> <button id="kw_clear_console">清除輸出區</button><button id="clear_bd">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
-<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console"></textarea></div>
-<div id="brython_div"></div>
-<div class="col-md-0" height="1" id="graphics-column" width="1"></div>
-<p><!-- ****************************** keyword start -->
-<script type="text/python3">
-from browser import document as doc
-# 導入位於 static 目錄下的 beditor.py 
-import beditor
-# 利用 beditor.py 中的 editor 類別建立案例, 對應到 kw1
-kw1 = beditor.editor("""# 導入 sys 模組
-import sys
-# 導入 keyword 模組
-import keyword
-# 利用 sys 模組中的 version_info 印出 Python 版次
-print("Python version: ", sys.version_info)
-# 利用 keyword 模組中的 kwlist 印出關鍵字
-print("Python keywords: ", keyword.kwlist)
-""", "kw_editor", "kw_console", "kw__container", "kw_py_src")
-# id 為 "keyword" 的按鈕點按時, 執行 kw1 物件中的 prog 方法
-doc["keyword"].bind('click', kw1.prog)
-</script>
-</p>
-<script type="text/python3">
-import beditor
-from browser import document
-url = "https://gist.githubusercontent.com/41023121/f4195e66b8b5ed2241e3914e2568aca8/raw/04a1f72aba9856b04df5d183e672a1a5650edac7/w13"
-src = open(url).read()
-w13 = beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
-document["w13"].bind("click", w13.prog)
-</script>
-<p><button id="keyword">Keyword</button><button id="w13">列出10個座標</button></p><br />Exam << <a href='Exam.html'>Previous</a> <a href='HW1.html'>Next</a> >> HW1</div>
+    <div id="tipue_search_content">About << <a href='About.html'>Previous</a> <a href='Exam.html'>Next</a> >> Exam<br /><h1>網路</h1>
+<pre>如何檢查網路連線是使用 IPv6 或 IPv4 聯外?
+    檢查採 IPv4 或 IPv6 連線設定.
+    因為目前電腦輔助設計室 IPv4 採 NAT 聯外.
+        何謂 NAT? Network Address Translation (將內部網路 IP address 轉為外部 IP address).
+            NAT 通常只有一個外部 IP. 140.130.17.88
+            何謂內部網路? 192.168.1.X (因為外部有一台 dhcp 伺服器會主動發送沒有意義的內部 IP address)
+                何謂 dhcp? dynamic host configuration protocol
+                設定好之後 dhcp server 會帶有一組 IP, 動態發給 dhcp client.
+            內外部網路位址有何差別?
+                外部網路位址節點, 理論上彼此可以直接互通.
+                內部網路理論上彼此可以直接互通. 以 NAT (裝置) 為牆, 由外聯內, 需要內部以 port mapping.
+        何謂 IP? Internet Protocol (Inter-Network Protocol).
+        以 command line (命令列) 查 ip 設定內容: ipconfig /all
+        internet protocol configuration
+
+有關課程網頁 template: 
+    如何自己建一個 cp2021_hw 倉儲與網頁?
+    
+    cp2021_hw 是一個採用 cmsimde 作為子模組 (submodule) 的網站.
+        何謂 submodule ?
+            git submodule add 子模組_URL 子模組名稱 
+        如何利用 cmsimde 當作子模組建立 Github Pages 網站?
+            何謂 cmsimde ?
+            何謂 Github Pages 網站?
+            
+沒有子模組的倉儲 .git/config
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = https://github.com/mdecourse/w11_1b.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+________________________________________________
+
+假如 start_ipv4.bat 啟動時已經指定透過 SSH 執行 git, 也就是執行了
+
+    REM 使用 putty 設定 git ssh 連線
+    set GIT_SSH=%Disk%:\putty\plink.exe
+
+則隨後與 git 相關的資料擷取連線都必須採用 SSH 協定. 因此設定子模組的指令必須為:
+
+git submodule add git@github.com:mdecourse/cmsimde.git cmsimde 而不是採 https 連線時的
+
+git submodule add https://github.com/mdecourse/cmsimde.git cmsimde
+
+加入子模組後的 w11_1b/.git/config 內容將成為:
+
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = git@github.com:mdecourse/w11_1b.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+[submodule "cmsimde"]
+	url = git@github.com:mdecourse/cmsimde.git
+	active = true
+_________________________________________________
+假如要讓以 cmsimde 作為子模組的網站能夠發揮作用, 還需要將 up_dir 中的內容複製到倉儲根目錄.
+
+SSH 設定
+
+1. 下載 putty
+
+putty 是 windows 的 ssh client 端.
+
+SSH 是 secure shell, shell 就是透過命令直接與電腦核心溝通
+
+GUI - Graphics User Interface 使用者圖形介面
+
+目前利用 ssh 跟 github sshd (ssh daemon)
+
+希望在 Windows 透過 ssh 協定將近端的版本推送到 Github
+
+2. 啟動可攜程式時要告知所有之後的  git 指令都是要透過 putty 進行.
+
+假如在 start_ipv6 或 start_ipv4 中帶有 
+
+REM 使用 putty 設定 git ssh 連線
+set GIT_SSH=%Disk%:\putty\plink.exe
+
+在 batch file (批次檔案) 中, 以 rem REM 開頭的當行為註解, Remark 代表註解
+
+3. 利用 puttygen.exe 建立 keys (public and private keys)
+
+generate 建立或產生
+
+之後要將 public key (Openssh 格式) 放入 Github 帳號下
+
+putty key 格式 &lt;-&gt; Openssh 格式
+
+private key &lt;-&gt; public key
+
+將 Openssh 格式的 public key 內容放入帳號對應下的 SSH and GPG keys 設定.
+
+將 Putty 格式的 private key 存入隨身碟 Y:\home_ipv6\.ssh 目錄中
+
+4. 重新啟動帶有 set GIT_SSH=%Disk%:\putty\plink.exe 的 start_ipv4.bat 批次檔案.
+
+採 SSH 協定後的 git 指令, 將透過 putty session 連線.
+
+5. 設定 putty 的連線 session.
+
+for ipv4: 假設 session 名稱為 github_com_ipv4, 連線到 github.com 主機, 需要提供:
+
+    private key 位置
+    
+for ipv6: 假設 session 名稱為 github_com_ipv6, 連線到 github.com 主機, 需要提供:
+
+    proxy 主機位址與 port
+    private key 位置
+    
+6. 在 push 改版資料時, 將原先 https 協定改為 git@github_com_ipv4:使用者帳號/倉儲
+
+例如: [remote "origin"]
+	url = git@github_com_ipv4:mdecourse/w11_1b.git
+    
+git status 可以查驗目前倉儲的改版狀況
+
+
+
+
+
+
+準備要編寫 Exercises 2.6 中的程式題目:</pre><br />About << <a href='About.html'>Previous</a> <a href='Exam.html'>Next</a> >> Exam</div>
         
     <!-- footer -->
       <div class="container">
