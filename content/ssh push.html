@@ -2,7 +2,7 @@
         <head>
         <title>cp2021 homework site</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H2">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
@@ -139,8 +139,21 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">network << <a href='network.html'>Previous</a> <a href='w13.html'>Next</a> >> w13<br /><h1>Exam</h1>
-<br />network << <a href='network.html'>Previous</a> <a href='w13.html'>Next</a> >> w13</div>
+    <div id="tipue_search_content">tokens << <a href='tokens.html'>Previous</a> <a href='network.html'>Next</a> >> network<br /><h1>ssh push</h1>
+<p>1.下載<a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">putty</a>.</p>
+<p>2.用PuTTY裡的puttygen.exe做一把金鑰</p>
+<p>(先按Generate然後滑鼠亂動一下)</p>
+<p>3.將key存到遠端github</p>
+<p>(帳號頭象下Settings裡的SSH and GPG keys)</p>
+<p>4.回到<span>puttygen.exe案save private key(可以存到home_ipv4或6)</span></p>
+<p><span>5.然後開啟PuTTY裡的putty.exe,在hostname和saved sessions欄位都填入github.com(先save),</span></p>
+<p><span>然後將SSH裡的Auth指向你存的金鑰(再save)</span></p>
+<p>6.按一下open</p>
+<p>7.將倉儲裡的.git裡的config用編譯器打開,將[remote "origin"]</p>
+<p>改成 url = <a href="mailto:git@github.com:(自己帳號)/cp2021_hw.git">git@github.com:(自己帳號)/cp2021_hw.git</a></p>
+<p>8.記得確認start_ipv4.bat裡有set GIT_SSH=%Disk%:\PuTTY\plink.exe</p>
+<p><span></span></p>
+<p><span></span></p><br />tokens << <a href='tokens.html'>Previous</a> <a href='network.html'>Next</a> >> network</div>
         
     <!-- footer -->
       <div class="container">
