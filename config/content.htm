@@ -10,7 +10,106 @@
 <h3>git 指令</h3>
 <p><strong>git init</strong> 將目前的目錄初始化為 Git 目錄, 建立本地儲存庫<br/> <br/> <strong>git config</strong> 設定或檢視 Git 設定檔資訊<br/> <br/> <strong>git add</strong> 將檔案加入 Git 暫存區<br/> <br/> <strong>git rm</strong> 將檔案移出 Git 暫存區<br/> <br/> <strong>git status</strong> 顯示 Git 狀態<br/> <br/> <strong>git commit</strong> 將暫存區的檔案提交至儲存庫納入版本控制<br/> <br/> <strong>git log</strong> 顯示過去歷次的版本異動<br/> <br/> <strong>git reflog</strong> 顯示完整的版本異動歷史紀錄<br/> <br/> <strong>git show</strong> 顯示指定版本的異動內容<br/> <br/> <strong>git branch</strong> 建立一個新分支 (branch)<br/> <br/> <strong>git checkout</strong> 取出分支內容還原為工作目錄<br/> <br/> <strong>git merge</strong> 合併分支<br/> <br/> <strong>git reset</strong> 重設某一版本<br/> <br/> <strong>git clone</strong> 從遠端儲存庫 (GitHub 或 Bitbucket) 複製副本至本地儲存庫<br/> <br/> <strong>git push</strong> 將本地儲存庫內容推送到遠端儲存庫<br/> <br/> <strong>git pull</strong> 將遠端儲存庫拉回合併更新到本地儲存庫</p>
 <h1>python</h1>
-<h2>簡易計算機</h2>
+<h2>python字典</h2>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<!-- for ggame -->
+<p>
+<script src="/static/jquery-3.3.1.min.js"></script>
+<script src="/static/jquery-ui.1.12.1.min.js"></script>
+<script src="/static/pixi-3.0.5.min.js"></script>
+<script src="/static/buzz-1.2.1.js"></script>
+<script src="/static/bs.js"></script>
+<script src="/downloads/brython_modules.js"></script>
+</p>
+<!-- Cango 程式庫 -->
+<p>
+<script src="/static/Cango-24v03-min.js"></script>
+<script src="/static/CangoAxes-6v01-min.js"></script>
+<script src="/static/gearUtils-09.js"></script>
+<script src="/static/SVGpathUtils-6v03-min.js"></script>
+</p>
+<!-- for Konva 程式庫 -->
+<p>
+<script src="/static/konva.min.js"></script>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<p><!-- 導入 FileSaver 與 filereader --></p>
+<p>
+<script src="/static/ace/FileSaver.min.js" type="text/javascript"></script>
+<script src="/static/ace/filereader.js" type="text/javascript"></script>
+</p>
+<p><!-- 導入 ace --></p>
+<p>
+<script src="/static/ace/ace.js" type="text/javascript"></script>
+<script src="/static/ace/ext-language_tools.js" type="text/javascript"></script>
+<script src="/static/ace/mode-python3.js" type="text/javascript"></script>
+<script src="/static/ace/snippets/python.js" type="text/javascript"></script>
+</p>
+<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["py_src"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
+<p>
+<script type="text/javascript">
+function doSave(storage_id, filename){
+    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
+    filename = document.getElementById(filename).value
+    saveAs(blob, filename+".py");
+}
+</script>
+</p>
+<p><!-- 印出版次與關鍵字程式 --></p>
+<p>
+<script type="text/python3">
+from browser import document as doc
+from browser import html
+import ace
+# 清除畫布
+def clear_bd(ev):
+    bd = doc["brython_div"]
+    bd.clear()
+# Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
+Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
+Ace.editor.setValue("""
+
+#字典
+#key    value
+#建     值
+
+dic ={"檢查是否原為小寫":".islower()""檢查是否全為大寫":"isupper()""顯示":"print()""字串位置":"[數字]記得從0開始算""找出字的位置":".index()"
+"取代原先東西":"replase("原物","改為")""布林值":"true /n false""全部小寫":".lower""全部大寫":".upper""取整數部分":"//兩個除式""取餘式":"%"}
+thing = input("請輸入查詢內容: ")
+print(dic[thing])
+""")
+Ace.editor.scrollToRow(0)
+Ace.editor.gotoLine(0)
+# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
+doc['kw_run'].bind('click', Ace.run)
+doc['kw_show_console'].bind('click', Ace.show_console)
+doc['kw_clear_console'].bind('click', Ace.clear_console)
+doc['clear_bd'].bind('click', clear_bd)
+</script>
+</p>
+<p><!-- 用來顯示程式碼的 editor 區域 --></p>
+<div id="kw_editor" style="width: 600px; height: 300px;"></div>
+<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
+<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src', 'kw_filename');" type="submit" value="Save"/></form>
+<p><button id="kw_run">Run</button> <button id="kw_show_console">Output</button> <button id="kw_clear_console">清除輸出區</button><button id="clear_bd">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
+<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console"></textarea></div>
+<div id="brython_div"></div>
+<div class="col-md-0" height="1" id="graphics-column" width="1"></div>
+<p><!-- ****************************** keyword start --></p>
+<script type="text/python3">
+import beditor
+from browser import document
+url = "https://gist.githubusercontent.com/41023121/3ddda833c005f680d66d58038f961252/raw/abe87c9c6510c262fec80ab7bc7425eea5d7b7d8/%25E5%25AD%2597%25E5%2585%25B8"
+src = open(url).read()
+snake= beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
+document["snake"].bind("click", snake.prog)
+</script>
+<p><button id="snake">python字典</button></p><h2>簡易計算機</h2>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
 <!-- for ggame -->
@@ -112,7 +211,7 @@ src = open(url).read()
 snake= beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 document["snake"].bind("click", snake.prog)
 </script>
-<p><button id="snake">簡易計算機</button></p><h1>network</h1>
+<p><button id="snake">字典python</button></p><h1>network</h1>
 <pre>如何檢查網路連線是使用 IPv6 或 IPv4 聯外?
     檢查採 IPv4 或 IPv6 連線設定.
     因為目前電腦輔助設計室 IPv4 採 NAT 聯外.
