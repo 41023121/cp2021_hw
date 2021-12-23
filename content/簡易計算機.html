@@ -201,9 +201,7 @@ def clear_bd(ev):
     bd.clear()
 # Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
 Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
-Ace.editor.setValue("""# 導入 sys 模組
-import sys
-# 導入 keyword 模組
+Ace.editor.setValue("""
 num1 = float(input("請輸入第一個數: "))
 ba   = input("請輸入運算符號: ")
 num2 = float(input("輸入第二個數: "))
@@ -216,10 +214,6 @@ elif ba == "*":
      print(num1*num2)
 elif ba == "/":
      print(num1/num2)
-# 利用 sys 模組中的 version_info 印出 Python 版次
-print("Python version: ", sys.version_info)
-# 利用 keyword 模組中的 kwlist 印出關鍵字
-print("Python keywords: ", keyword.kwlist)
 """)
 Ace.editor.scrollToRow(0)
 Ace.editor.gotoLine(0)
@@ -238,7 +232,16 @@ doc['clear_bd'].bind('click', clear_bd)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console"></textarea></div>
 <div id="brython_div"></div>
 <div class="col-md-0" height="1" id="graphics-column" width="1"></div>
-<p><!-- ****************************** keyword start --></p><br />python << <a href='python.html'>Previous</a> <a href='network.html'>Next</a> >> network</div>
+<p><!-- ****************************** keyword start --></p>
+<script type="text/python3">
+import beditor
+from browser import document
+url = "https://gist.githubusercontent.com/41023121/0c2fea57ad38dfe33be2c6e2ec79091c/raw/c3385bcb3452cc4b94f7d73aba9f9cd3e434d7c8/%25E7%25B0%25A1%25E6%2598%2593%25E8%25A8%2588%25E7%25AE%2597%25E6%25A9%259F"
+src = open(url).read()
+snake= beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
+document["snake"].bind("click", snake.prog)
+</script>
+<p><button id="snake">簡易計算機</button></p><br />python << <a href='python.html'>Previous</a> <a href='network.html'>Next</a> >> network</div>
         
     <!-- footer -->
       <div class="container">
