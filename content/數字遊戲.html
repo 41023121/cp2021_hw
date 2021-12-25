@@ -201,20 +201,23 @@ def clear_bd(ev):
     bd.clear()
 # Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
 Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
-Ace.editor.setValue("""
-num1 = float(input("請輸入第一個數: "))
-ba   = input("請輸入運算符號: ")
-num2 = float(input("輸入第二個數: "))
-ba = str(ba)
-if   ba == "+":
-     print(num1+num2)
-elif ba == "-":
-     print(num1-num2)
-elif ba == "*":
-     print(num1*num2)
-elif ba == "/":
-     print(num1/num2)
-""")
+Ace.editor.setValue("""import random
+answer=random.randint(1,400)
+gass=0
+a=1
+gass=input("猜猜你的智商最多400")
+while gass!=0.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000005456541825216415128481845562:
+     
+    if answer<int(gass)<100:
+        gass=input("你太高估自己了") 
+    elif answer==int(gass):
+        print("恭喜你答對了,但沒有任何獎勵") 
+        break
+    elif answer>int(gass)>0:
+        gass=input("其實你比你想像的更聰明")
+    else  :
+        print("你他媽是智障嗎")
+        break""")
 Ace.editor.scrollToRow(0)
 Ace.editor.gotoLine(0)
 # 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
