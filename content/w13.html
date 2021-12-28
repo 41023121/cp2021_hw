@@ -201,17 +201,12 @@ def clear_bd(ev):
     bd.clear()
 # Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
 Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
-Ace.editor.setValue("""# 導入 sys 模組
-import sys
-# 導入 keyword 模組
-import keyword
-def helloWorld():
-    print("Hello World!")
-helloWorld()
-# 利用 sys 模組中的 version_info 印出 Python 版次
-print("Python version: ", sys.version_info)
-# 利用 keyword 模組中的 kwlist 印出關鍵字
-print("Python keywords: ", keyword.kwlist)
+Ace.editor.setValue("""import random
+n=10
+for i in range(1,n+1):
+    r=random.randint(1,18)
+    t=random.randint(1,18)
+    print("第"+str(i)+"個紅色方塊座標為("+str(r)+","+str(t)+")")
 """)
 Ace.editor.scrollToRow(0)
 Ace.editor.gotoLine(0)
@@ -230,42 +225,25 @@ doc['clear_bd'].bind('click', clear_bd)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console"></textarea></div>
 <div id="brython_div"></div>
 <div class="col-md-0" height="1" id="graphics-column" width="1"></div>
-<p><!-- ****************************** keyword start -->
-<script type="text/python3">
-from browser import document as doc
-# 導入位於 static 目錄下的 beditor.py 
-import beditor
-# 利用 beditor.py 中的 editor 類別建立案例, 對應到 kw1
-kw1 = beditor.editor("""# 導入 sys 模組
-import sys
-# 導入 keyword 模組
-import keyword
-# 利用 sys 模組中的 version_info 印出 Python 版次
-print("Python version: ", sys.version_info)
-# 利用 keyword 模組中的 kwlist 印出關鍵字
-print("Python keywords: ", keyword.kwlist)
-""", "kw_editor", "kw_console", "kw__container", "kw_py_src")
-# id 為 "keyword" 的按鈕點按時, 執行 kw1 物件中的 prog 方法
-doc["keyword"].bind('click', kw1.prog)
-</script>
-</p>
+<p><!-- ****************************** keyword start --></p>
 <script type="text/python3">
 import beditor
 from browser import document
 url = "https://gist.githubusercontent.com/41023121/f4195e66b8b5ed2241e3914e2568aca8/raw/04a1f72aba9856b04df5d183e672a1a5650edac7/w13"
 src = open(url).read()
-w13 = beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
-document["w13"].bind("click", w13.prog)
+snake= beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
+document["snake"].bind("click", snake.prog)
 </script>
 <script type="text/python3">
 import beditor
 from browser import document
 url = "https://gist.githubusercontent.com/41023121/c01c8cf5151eb415ce16e5d3de197561/raw/6330120df70aa716de45959797d873d044db9686/w13%25E5%25BB%25B6%25E4%25BC%25B8"
 src = open(url).read()
-w13_1= beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
-document["w13_1"].bind("click", w13_1.prog)
+snake1= beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
+document["snake1"].bind("click", snake1.prog)
 </script>
-<p><button id="keyword">keyword</button><button id="w13">列出10個座標</button><button id="w13_1">13延伸</button></p><br />Exam << <a href='Exam.html'>Previous</a> <a href='HW1.html'>Next</a> >> HW1</div>
+<p><button id="snake">10個座標</button></p>
+<p><button id="snake1">進階</button></p><br />Exam << <a href='Exam.html'>Previous</a> <a href='HW1.html'>Next</a> >> HW1</div>
         
     <!-- footer -->
       <div class="container">

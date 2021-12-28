@@ -201,12 +201,7 @@ def clear_bd(ev):
     bd.clear()
 # Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
 Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
-Ace.editor.setValue("""
-
-#字典
-#key    value
-#建     值
-
+Ace.editor.setValue("""#字典
 dic ={"檢查是否原為小寫":".islower()""檢查是否全為大寫":"isupper()""顯示":"print()""字串位置":"[數字]記得從0開始算""找出字的位置":".index()"
 "取代原先東西":"replase("原物","改為")""布林值":"true /n false""全部小寫":".lower""全部大寫":".upper""取整數部分":"//兩個除式""取餘式":"%"}
 thing = input("請輸入查詢內容: ")
