@@ -223,40 +223,45 @@ def eat(px, py, ax, ay):
     global xv, yv, pre_pause, paused
     # (px, py) go to (ax, ay) through incremented xv, yv
     if ax != px or ay != py:
-        if py!=0 and px!=29 and py!=29 and py!=ay and px!=0 and not paused:
+        
+        if py!=0 and px!=29 and py!=29 and py!=ay and px!=0 and py!=a and not paused:
             xv = 0
             yv = -1
-        elif py==0 and px!=29 and py!=ay and not paused:
+        elif py==0 and px!=29 and py!=ay and px==0 and not paused:
             xv = 1
             yv = 0
         elif px==29 and py!=29 and not paused:
             xv = 0
             yv = 1
-        elif py==29 and px!=0 and not paused:
+        elif py==29 and px!=0  and not paused:
             xv = -1
             yv = 0
-        elif px<1 and py!=ay and  not paused:
+        elif px<1 and py!=ay and py!=0 and py!=a  and not paused:
             xv = 0
             yv = -1
         elif  py==ay and py!=29 and not paused:
             xv = 1
             yv = 0
-        elif  py==ay and px==ax and py-1 != 0 and not paused:
+        elif  py==ay and px==ax and py-1 != 0 and py!=0 and not paused:
             xv = 0
             yv = -1
-        elif  py == ay-1 and px!=0 and not paused:
-            xv = -1
-            yv = 0
-      
+        elif  py==a and py!=0 and px!=0 and not paused:
+            xv=-1
+            yv=0
+        elif  py==0 and not paused:
+            xv=1
+            yv=0
+        elif  px==0 and not paused:
+            xv=0
+            yv=-1
         
         
       
-       
-    
+a=1
       
             
 def game2():
-    global px, py, tc, gs, ax, ay, trail, tail, score
+    global px, py, tc, gs, ax, ay, trail, tail, score,a
     # px 為 snake 第一個點的 x 座標, 增量值為 xv
     px += xv
     py += yv
@@ -299,6 +304,7 @@ def game2():
     # 則 tail 增量, 即多一節且得分加 1, 然後食物座標 [ax, ay] 重新以亂數定位
     if ax == px and ay == py:
         tail += 1
+        a = ay-1
         ax = math.floor(random()*tc)
         ay = math.floor(random()*tc)
         score += 1
@@ -383,7 +389,7 @@ ctx = canvas.getContext("2d")
 doc.addEventListener("keydown", key_push2)
 instructions_btn = doc["instructions-btn2"]
 instructions_btn.addEventListener("click", show_instructions2)
-browser.timer.set_interval(game2, 0.0001) 
+browser.timer.set_interval(game2, 10) 
 """)
 Ace.editor.scrollToRow(0)
 Ace.editor.gotoLine(0)
