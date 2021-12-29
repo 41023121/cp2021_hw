@@ -1134,22 +1134,16 @@ def key_push(evt):
     key = evt.keyCode
     # 37 is left arrow key
     # 74 is j key
-    if key == 74 and not paused:
+    if key == 65 and not paused:
         xv = -1
         yv = 0
-    # 38 is up arrow key
-    # 73 is i key
-    elif key == 73 and not paused:
+    elif key ==87 and not paused:
         xv = 0
         yv = -1
-    # 39 is right arrow key
-    # 76 is l key
-    elif key == 76 and not paused:
+    elif key ==68 and not paused:
         xv = 1
         yv = 0
-    # 40 is down arrow key
-    # 77 is m key
-    elif key == 75 and not paused:
+    elif key ==83 and not paused:
         xv = 0
         yv = 1
     # 32 is pause key
