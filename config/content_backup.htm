@@ -73,7 +73,9 @@ def clear_bd(ev):
 # Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
 Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
 Ace.editor.setValue("""#字典
-dic ={"檢查是否原為小寫":".islower()""檢查是否全為大寫":"isupper()""顯示":"print()""字串位置":"[數字]記得從0開始算""找出字的位置":".index()"
+#key    value
+#建     值
+dic ={"檢查是否全為小寫":".islower()""檢查是否全為大寫":"isupper()""顯示":"print()""字串位置":"[數字]記得從0開始算""找出字的位置":".index()"
 "取代原先東西":"replase("原物","改為")""布林值":"true /n false""全部小寫":".lower""全部大寫":".upper""取整數部分":"//兩個除式""取餘式":"%"}
 thing = input("請輸入查詢內容: ")
 print(dic[thing])
@@ -99,7 +101,7 @@ doc['clear_bd'].bind('click', clear_bd)
 <script type="text/python3">
 import beditor
 from browser import document
-url = "https://gist.githubusercontent.com/41023121/3ddda833c005f680d66d58038f961252/raw/abe87c9c6510c262fec80ab7bc7425eea5d7b7d8/%25E5%25AD%2597%25E5%2585%25B8"
+url = "https://gist.githubusercontent.com/41023121/3ddda833c005f680d66d58038f961252/raw/ab8087df18ad73684dd2e3d31adfe45b94da08fb/%25E5%25AD%2597%25E5%2585%25B8"
 src = open(url).read()
 snake= beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 document["snake"].bind("click", snake.prog)
@@ -166,8 +168,7 @@ def clear_bd(ev):
     bd.clear()
 # Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
 Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
-Ace.editor.setValue("""
-num1 = float(input("請輸入第一個數: "))
+Ace.editor.setValue("""num1 = float(input("請輸入第一個數: "))
 ba   = input("請輸入運算符號: ")
 num2 = float(input("輸入第二個數: "))
 ba = str(ba)
@@ -259,8 +260,7 @@ def clear_bd(ev):
     bd.clear()
 # Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
 Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
-Ace.editor.setValue("""
-#while 迴圈
+Ace.editor.setValue("""#while 迴圈
 
 i=1
 while i<=5:
@@ -286,8 +286,7 @@ doc['clear_bd'].bind('click', clear_bd)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console"></textarea></div>
 <div id="brython_div"></div>
 <div class="col-md-0" height="1" id="graphics-column" width="1"></div>
-<p><!-- ****************************** keyword start --></p>
-<h2>for 迴圈應用</h2>
+<p><!-- ****************************** keyword start --></p><h2>for 迴圈應用</h2>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
 <!-- for ggame -->
@@ -349,7 +348,8 @@ def clear_bd(ev):
     bd.clear()
 # Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
 Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
-Ace.editor.setValue("""def power(a,b):
+Ace.editor.setValue("""#for迴圈應用
+def power(a,b):
     first=1
     for index in range(b):
         first=first*a
@@ -610,13 +610,12 @@ document["snake"].bind("click", snake.prog)
 <script type="text/python3">
 import beditor
 from browser import document
-url = "https://gist.githubusercontent.com/41023121/c01c8cf5151eb415ce16e5d3de197561/raw/6330120df70aa716de45959797d873d044db9686/w13%25E5%25BB%25B6%25E4%25BC%25B8"
+url = "https://gist.githubusercontent.com/41023121/c01c8cf5151eb415ce16e5d3de197561/raw/a84eae45f70887f2bcb6450d6cfead2cf4b06ff1/w13%25E5%25BB%25B6%25E4%25BC%25B8"
 src = open(url).read()
 snake1= beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
 document["snake1"].bind("click", snake1.prog)
 </script>
-<p><button id="snake">10個座標</button></p>
-<p><button id="snake1">進階</button></p><h1>HW1</h1>
+<p><button id="snake">10個座標</button><button id="snake1">進階</button></p><h1>HW1</h1>
 <p>HW1 - 網際動畫與 touch typing 佔學期成績 20%.</p>
 <p><span style="background-color: #ffff99;">HW1 必須在 2021.10.20 22:00 之前完成</span>.</p>
 <p><a href="https://github.com/mdecourse/cp2021/discussions/8">HW1 具體項目成果回報區</a>將於 2021.09.23 開啟, 於 <span style="background-color: #ff99cc;">2021.10.20 22:00 關閉</span></p>
