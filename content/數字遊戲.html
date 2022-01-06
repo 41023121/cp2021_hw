@@ -236,7 +236,15 @@ doc['clear_bd'].bind('click', clear_bd)
 <div id="brython_div"></div>
 <div class="col-md-0" height="1" id="graphics-column" width="1"></div>
 <p><!-- ****************************** keyword start --></p>
-<br />runsrc << <a href='runsrc.html'>Previous</a> <a href='41023121.html'>Next</a> >> 41023121</div>
+<script type="text/python3">
+import beditor
+from browser import document
+url = "https://gist.githubusercontent.com/41023121/b3e1aa6bf4956bb11aa247f76f497a66/raw/b4e3b9c8da4320ad0bdb006f394746a5e5eeaef9/%25E7%258C%259C%25E6%2595%25B8%25E5%25AD%25971%25E5%2588%25B05000"
+src = open(url).read()
+snake6= beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
+document["snake6"].bind("click", snake6.prog)
+</script>
+<p><button id="snake6">數字遊戲</button></p><br />runsrc << <a href='runsrc.html'>Previous</a> <a href='41023121.html'>Next</a> >> 41023121</div>
         
     <!-- footer -->
       <div class="container">

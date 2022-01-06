@@ -299,7 +299,7 @@ def key_push(evt):
         paused = not paused
   
 def show_instructions(evt):
-        window.alert("keys to control: i=up, m=down, j=left, l=right, p=pause")
+        window.alert("keys to control: w=up, s=down, a=left, d=right, p=pause")
       
 # 利用 html 建立 canvas 超文件物件
 canvas = html.CANVAS(width = 600, height = 600)
@@ -356,7 +356,16 @@ doc['clear_bd'].bind('click', clear_bd)
 <div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console"></textarea></div>
 <div id="brython_div"></div>
 <div class="col-md-0" height="1" id="graphics-column" width="1"></div>
-<p><!-- ****************************** keyword start --></p><br />HW3 << <a href='HW3.html'>Previous</a> <a href='ai snake.html'>Next</a> >> ai snake</div>
+<p><!-- ****************************** keyword start --></p>
+<script type="text/python3">
+import beditor
+from browser import document
+url = "https://gist.githubusercontent.com/41023121/8080347ef0632cda69ec6f6f6b001fb6/raw/6cd5929c28781a4f8d87d00a980b940f3f2af083/%25E8%25B2%25AA%25E9%25A3%259F%25E8%259B%2587"
+src = open(url).read()
+snake4= beditor.editor(src, "kw_editor", "kw_console", "kw__container", "kw_py_src")
+document["snake4"].bind("click", snake4.prog)
+</script>
+<p><button id="snake4">snake</button></p><br />HW3 << <a href='HW3.html'>Previous</a> <a href='ai snake.html'>Next</a> >> ai snake</div>
         
     <!-- footer -->
       <div class="container">
