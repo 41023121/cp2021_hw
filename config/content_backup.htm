@@ -9,7 +9,233 @@
 <p></p>
 <h3>git 指令</h3>
 <p><strong>git init</strong> 將目前的目錄初始化為 Git 目錄, 建立本地儲存庫<br/> <br/> <strong>git config</strong> 設定或檢視 Git 設定檔資訊<br/> <br/> <strong>git add</strong> 將檔案加入 Git 暫存區<br/> <br/> <strong>git rm</strong> 將檔案移出 Git 暫存區<br/> <br/> <strong>git status</strong> 顯示 Git 狀態<br/> <br/> <strong>git commit</strong> 將暫存區的檔案提交至儲存庫納入版本控制<br/> <br/> <strong>git log</strong> 顯示過去歷次的版本異動<br/> <br/> <strong>git reflog</strong> 顯示完整的版本異動歷史紀錄<br/> <br/> <strong>git show</strong> 顯示指定版本的異動內容<br/> <br/> <strong>git branch</strong> 建立一個新分支 (branch)<br/> <br/> <strong>git checkout</strong> 取出分支內容還原為工作目錄<br/> <br/> <strong>git merge</strong> 合併分支<br/> <br/> <strong>git reset</strong> 重設某一版本<br/> <br/> <strong>git clone</strong> 從遠端儲存庫 (GitHub 或 Bitbucket) 複製副本至本地儲存庫<br/> <br/> <strong>git push</strong> 將本地儲存庫內容推送到遠端儲存庫<br/> <br/> <strong>git pull</strong> 將遠端儲存庫拉回合併更新到本地儲存庫</p>
-<h1>期末考試</h1><h1>python</h1><h2>python字典</h2>
+<h1>期末考試</h1>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<!-- for ggame -->
+<p>
+<script src="/static/jquery-3.3.1.min.js"></script>
+<script src="/static/jquery-ui.1.12.1.min.js"></script>
+<script src="/static/pixi-3.0.5.min.js"></script>
+<script src="/static/buzz-1.2.1.js"></script>
+<script src="/static/bs.js"></script>
+<script src="/downloads/brython_modules.js"></script>
+</p>
+<!-- Cango 程式庫 -->
+<p>
+<script src="/static/Cango-24v03-min.js"></script>
+<script src="/static/CangoAxes-6v01-min.js"></script>
+<script src="/static/gearUtils-09.js"></script>
+<script src="/static/SVGpathUtils-6v03-min.js"></script>
+</p>
+<!-- for Konva 程式庫 -->
+<p>
+<script src="/static/konva.min.js"></script>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<p><!-- 導入 FileSaver 與 filereader --></p>
+<p>
+<script src="/static/ace/FileSaver.min.js" type="text/javascript"></script>
+<script src="/static/ace/filereader.js" type="text/javascript"></script>
+</p>
+<p><!-- 導入 ace --></p>
+<p>
+<script src="/static/ace/ace.js" type="text/javascript"></script>
+<script src="/static/ace/ext-language_tools.js" type="text/javascript"></script>
+<script src="/static/ace/mode-python3.js" type="text/javascript"></script>
+<script src="/static/ace/snippets/python.js" type="text/javascript"></script>
+</p>
+<p><!-- 請注意, 這裡使用 Javascript 將 localStorage["py_src"] 中存在近端瀏覽器的程式碼, 由使用者決定存檔名稱--></p>
+<p>
+<script type="text/javascript">
+function doSave(storage_id, filename){
+    var blob = new Blob([localStorage[storage_id]], {type: "text/plain;charset=utf-8"});
+    filename = document.getElementById(filename).value
+    saveAs(blob, filename+".py");
+}
+</script>
+</p>
+<p><!-- 印出版次與關鍵字程式 --></p>
+<p>
+<script type="text/python3">
+from browser import document as doc
+from browser import html
+import ace
+# 清除畫布
+def clear_bd(ev):
+    bd = doc["brython_div"]
+    bd.clear()
+# Brython 3.3.4 內建的 container 名稱為  'container' 且 turtle 輸出為 svg 必須使用 div 訂定 id
+Ace = ace.Editor(editor_id="kw_editor", console_id="kw_console", container_id="kw__container", storage_id="kw_py_src" )
+Ace.editor.setValue("""# 這個程式用於 demo 以 canvas 畫線以及寫字
+# 從 Brython 程式庫中的 browser 模組導入 document 類別, 並以簡寫設定為 doc
+from browser import document as doc
+# 從 browser 模組導入 html 類別, 主要用於建立 CANVAS 標註物件, 並插入頁面中
+from browser import html
+from browser import timer
+import math
+import random
+
+# 利用 html 建立一個 CANVAS 標註物件, 與變數 canvas 對應
+canvas = html.CANVAS(width = 750, height = 750)
+# 將 canvas 標註的 id 設為 "canvas"
+canvas.id = "canvas"
+# 將 document 中 id 為 "brython_div" 的標註 
+# 設為與 brython_div 變數對應
+brython_div = doc["brython_div"]
+# 將 canvas 標註放入 brython_div 所在位置
+# 頁面中原本就已經放入 <div id="brython_div"></div> 標註
+brython_div <= canvas
+# 將頁面中 id 為 canvas 的 CANVAS 設為與 canvas 變數對應
+canvas = doc["canvas"]
+# 將 canvas 的 2d 繪圖 context 命名為 ctx
+brython_div <= html.BUTTON("開始", id="power")
+ctx = canvas.getContext("2d")
+
+# 建立一個 dRect() 函式
+# s default 為 1, c defaul 為紅色
+w = 50
+h = 50
+x=0
+y=0
+px=0
+py=0
+ay=0
+ax=0
+k=0
+a=0
+aax=(random.randint(1,14))*50
+aay=(random.randint(1,14))*50
+ctx.fillStyle = "red"
+ctx.fillRect( aax, aay, 50, 50)
+aax1=(random.randint(1,14))*50
+aay1=(random.randint(1,14))*50
+ctx.fillStyle = "red"
+ctx.fillRect( aax1, aay, 50, 50)
+aax2=(random.randint(1,14))*50
+aay2=(random.randint(1,14))*50
+ctx.fillStyle = "red"
+ctx.fillRect( aax2, aay2, 50, 50)
+aax3=(random.randint(1,14))*50
+aay3=(random.randint(1,14))*50
+ctx.fillStyle = "red"
+ctx.fillRect( aax3, aay3, 50, 50)
+aax4=(random.randint(1,14))*50
+aay4=(random.randint(1,14))*50
+ctx.fillStyle = "red"
+ctx.fillRect( aax4, aay4, 50, 50)
+def game():  
+    global x,y,px,py,ax,ay,aax,aay,k,a
+    for i in range(15):
+        xpos = x+i*w 
+        for j in range(15):
+            ypos = y+j*h 
+            ctx.lineWidth = 1 
+            ctx.strokeStyle = "black" 
+            ctx.strokeRect(xpos, ypos, w, h)
+    ctx.clearRect( ax, ay, 50, 50)
+    ctx.fillStyle = "green"
+    ctx.fillRect( px, py, 50, 50)
+    if k==0:
+        if px==0 and py!= 14*h and py>=ay: 
+            vx=0
+            vy=50
+       
+        if py==14*h and px!=14*w and px>=ax:
+            vx=50
+            vy=0
+      
+        if px==14*w and py!=0 and py<=ay :
+            vx=0
+            vy=-50
+        if py==0 and px!=0 and px<=ax :
+            vx=-50
+            vy=0
+        if px==0 and py==0 and ax==50:
+            k=1
+        ax=px 
+        ay=py    
+        px +=vx 
+        py +=vy
+    if k==1:
+        ctx.clearRect( 0, 0, 50, 50)
+        ctx.strokeRect(0, 0, w, h)
+        if aay>py :
+            vx=0
+            vy=50
+        if aax<px :
+            vx=-50
+            vy=0
+        if aay<py :
+            vx=0
+            vy=-50
+        if aax>px :
+            vx=50
+            vy=0
+        if aax3==px and aay3==py :
+            aax=aax4
+            aay=aay4
+            a=a+1
+        if aax2==px and aay2==py :
+            aax=aax3
+            aay=aay3
+            a=a+1
+        if aax1==px and aay1==py :
+            aax=aax2
+            aay=aay2
+            a=a+1
+        if aax==px and aay==py :
+            aax=aax1
+            aay=aay1
+            a=a+1
+        
+        
+        ax=px 
+        ay=py    
+        px +=vx 
+        py +=vy
+        print(a)
+game() 
+module = None
+def game2(ev) : 
+    global module
+    if module is None : 
+        module = timer.set_interval(game, 100)
+        doc['power'].text = '暫停'
+    elif module == 'hold':
+        module = timer.set_interval(game, 100)
+        doc['power'].text = '暫停'
+    else:
+        timer.clear_interval(module)
+        module = 'hold'
+        doc['power'].text = '繼續'
+        
+doc["power"].bind("click", game2)  
+    
+#browser.timer.set_interval(game, 100) #100毫秒執行一次
+""")
+Ace.editor.scrollToRow(0)
+Ace.editor.gotoLine(0)
+# 執行程式, 顯示輸出結果與清除輸出結果及對應按鈕綁定
+doc['kw_run'].bind('click', Ace.run)
+doc['kw_show_console'].bind('click', Ace.show_console)
+doc['kw_clear_console'].bind('click', Ace.clear_console)
+doc['clear_bd'].bind('click', clear_bd)
+</script>
+</p>
+<p><!-- 用來顯示程式碼的 editor 區域 --></p>
+<div id="kw_editor" style="width: 600px; height: 300px;"></div>
+<p><!-- 以下的表單與按鈕與前面的 Javascript doSave 函式以及 FileSaver.min.js 互相配合 --></p>
+<form><label>Filename: <input id="kw_filename" placeholder="input file name" type="text"/>.py</label> <input onclick="doSave('kw_py_src', 'kw_filename');" type="submit" value="Save"/></form>
+<p><button id="kw_run">Run</button> <button id="kw_show_console">Output</button> <button id="kw_clear_console">清除輸出區</button><button id="clear_bd">清除繪圖區</button><button onclick="window.location.reload()">Reload</button></p>
+<div style="width: 100%; height: 100%;"><textarea autocomplete="off" id="kw_console"></textarea></div>
+<div id="brython_div"></div>
+<div class="col-md-0" height="1" id="graphics-column" width="1"></div>
+<p><!-- ****************************** keyword start --></p><h1>python</h1><h2>python字典</h2>
 <script src="/static/brython.js"></script>
 <script src="/static/brython_stdlib.js"></script>
 <!-- for ggame -->
@@ -2070,4 +2296,5 @@ document["snake199"].bind("click", snake199.prog)
 <p>===================================</p>
 <p>這學期前面在學如何建立倉儲，讓我們大致上了解近端遠端動態靜態，其中時我才對程式更加的認識，眼前不再是看不懂的英文亂碼，而是開始有了分別，開始了解甚麼是迴圈，在剛開始學while的時候一直忘記設定如何脫離，又因為while是瞬間執行得導致網頁瞬間卡死，還有python沒有除錯也讓我吃了不少苦頭，因為對英文的不熟悉常常打錯幾個英文字母，都要一航航的測試才會知道自己到底錯在哪裡，之後就是在學snake老實說我真的看不太懂某些引用，所以我參考了41023146的snake他的想法是繞最外面一圈來增加蛇的長度，無視我將他的蛇改為會往上一格再回頭來增加蛇的長度，目前最多是來到了133分，之後是final1我是用之前的w13進接下去改的，因為原本就有畫格子所使十分輕鬆，但我之後還是有座迴圈版本的，final2就是加上方格去程其實簡單但回程真的蠻難寫的要新增一個變數來記錄自己前一個位置，在頭腦中要分得很清楚才有辦法寫出來，final3就是用final2+之前的ai snake的走法來寫要注意梅果不同而沒辦法直接連續執行，要先定義每個的鳴子不然會無法吃到全部的梅果之後再加上啟動案哪就完成啦。</p>
 <p>這學期學到很多東西，也了解到程式語言不是馬上就能全部學會的，重點是要理解害和知道自己所缺少甚麼再去查來解決眼下問題才是最重要的。</p>
+<p>影片:<a href="https://www.youtube.com/channel/UC0bBB4shoFeCt1FuQk6n_mw/videos">https://www.youtube.com/channel/UC0bBB4shoFeCt1FuQk6n_mw/videos</a> </p>
 <p></p>
